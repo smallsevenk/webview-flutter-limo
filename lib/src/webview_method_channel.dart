@@ -143,6 +143,8 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
     return map;
   }
 
+  // if (sender != null) 'from': sender.hex,
+
   /// Converts a [CreationParams] object to a map as expected by `platform_views` channel.
   ///
   /// This is used for the `creationParams` argument of the platform views created by
@@ -150,6 +152,7 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
   static Map<String, dynamic> creationParamsToMap(
       CreationParams creationParams) {
     return <String, dynamic>{
+      'javascriptInjections': creationParams.javascriptInjections.toList(),
       'initialUrl': creationParams.initialUrl,
       'settings': _webSettingsToMap(creationParams.webSettings),
       'javascriptChannelNames': creationParams.javascriptChannelNames.toList(),

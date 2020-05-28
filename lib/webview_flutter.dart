@@ -139,6 +139,7 @@ class WebView extends StatefulWidget {
   /// The `javascriptMode` and `autoMediaPlaybackPolicy` parameters must not be null.
   const WebView({
     Key key,
+    this.javascriptInjections,
     this.onWebViewCreated,
     this.initialUrl,
     this.javascriptMode = JavascriptMode.disabled,
@@ -237,6 +238,7 @@ class WebView extends StatefulWidget {
   ///
   /// A null value is equivalent to an empty set.
   final Set<JavascriptChannel> javascriptChannels;
+  final Set<String> javascriptInjections;
 
   /// A delegate function that decides how to handle navigation actions.
   ///
@@ -383,6 +385,7 @@ CreationParams _creationParamsfromWidget(WebView widget) {
     javascriptChannelNames: _extractChannelNames(widget.javascriptChannels),
     userAgent: widget.userAgent,
     autoMediaPlaybackPolicy: widget.initialMediaPlaybackPolicy,
+    javascriptInjections: widget.javascriptInjections ?? Set<String>(),
   );
 }
 

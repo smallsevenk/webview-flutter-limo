@@ -276,6 +276,7 @@ class CreationParams {
   ///
   /// The `autoMediaPlaybackPolicy` parameter must not be null.
   CreationParams({
+    this.javascriptInjections,
     this.initialUrl,
     this.webSettings,
     this.javascriptChannelNames,
@@ -306,6 +307,7 @@ class CreationParams {
   // TODO(amirh): describe what should happen when postMessage is called once that code is migrated
   // to PlatformWebView.
   final Set<String> javascriptChannelNames;
+  final Set<String> javascriptInjections;
 
   /// The value used for the HTTP User-Agent: request header.
   ///

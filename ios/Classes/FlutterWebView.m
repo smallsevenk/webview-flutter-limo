@@ -84,6 +84,11 @@
       [self registerJavaScriptChannels:_javaScriptChannelNames controller:userContentController];
     }
 
+    if ([args[@"javascriptInjections"] isKindOfClass:[NSArray class]]) {
+        NSArray* javaScriptInjections = args[@"javascriptInjections"];
+        [self registerJavaScriptInjections:javaScriptInjections controller:userContentController];
+    }
+
     NSDictionary<NSString*, id>* settings = args[@"settings"];
 
     WKWebViewConfiguration* configuration = [[WKWebViewConfiguration alloc] init];
@@ -372,6 +377,17 @@
   [request setAllHTTPHeaderFields:headers];
   [_webView loadRequest:request];
   return true;
+}
+
+- (void)registerJavaScriptInjections: (NSSet*)scripts
+                          controller: (WKUserContentController*)userContentController {
+  for ( NSString* subscript in scripts ) {
+      WKUserScript* wrapperScript =
+          [[WKUserScript alloc] initWithSource:subscript
+                                 injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+                              forMainFrameOnly:NO];
+      [userContentController addUserScript:wrapperScript];
+  }
 }
 
 - (void)registerJavaScriptChannels:(NSSet*)channelNames

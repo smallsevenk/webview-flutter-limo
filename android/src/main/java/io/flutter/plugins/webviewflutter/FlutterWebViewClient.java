@@ -16,6 +16,7 @@ import androidx.webkit.WebViewClientCompat;
 import io.flutter.plugin.common.MethodChannel;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 // We need to use WebViewClientCompat to get
 // shouldOverrideUrlLoading(WebView view, WebResourceRequest request)
@@ -25,11 +26,16 @@ class FlutterWebViewClient {
   private static final String TAG = "FlutterWebViewClient";
   private final MethodChannel methodChannel;
   private boolean hasNavigationDelegate;
+  private List<String> injectionScripts;
 
   FlutterWebViewClient(MethodChannel methodChannel) {
     this.methodChannel = methodChannel;
   }
 
+  public void setInjectionScripts(List<String> scripts) {
+      injectionScripts = scripts;
+  }
+  
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
   private boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
     if (!hasNavigationDelegate) {
@@ -68,6 +74,11 @@ class FlutterWebViewClient {
   }
 
   private void onPageStarted(WebView view, String url) {
+
+    for (String jsString : injectionScripts ) {
+      view.evaluateJavascript(jsString, null);
+    }
+
     Map<String, Object> args = new HashMap<>();
     args.put("url", url);
     methodChannel.invokeMethod("onPageStarted", args);

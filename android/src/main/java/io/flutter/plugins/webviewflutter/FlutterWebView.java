@@ -60,7 +60,6 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     if (params.containsKey(JS_CHANNEL_NAMES_FIELD)) {
       registerJavaScriptChannelNames((List<String>) params.get(JS_CHANNEL_NAMES_FIELD));
     }
-
     updateAutoMediaPlaybackPolicy((Integer) params.get("autoMediaPlaybackPolicy"));
     if (params.containsKey("userAgent")) {
       String userAgent = (String) params.get("userAgent");
@@ -71,14 +70,7 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
       webView.loadUrl(url);
     }
     if (params.containsKey(JS_INJECTION_SCRIPTS_FIELD)) {
-      List<String> scriptList = (List<String>)params.get(JS_INJECTION_SCRIPTS_FIELD);
-      for ( String jsString : scriptList ) {
-          webView.evaluateJavascript( jsString, new android.webkit.ValueCallback<String>() {
-              @Override
-              public void onReceiveValue(String value) {
-              }
-          });
-      }
+      flutterWebViewClient.setInjectionScripts((List<String>) params.get(JS_INJECTION_SCRIPTS_FIELD));
     }
   }
 

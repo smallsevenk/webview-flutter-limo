@@ -24,6 +24,7 @@ import java.util.Map;
 
 public class FlutterWebView implements PlatformView, MethodCallHandler {
   private static final String JS_CHANNEL_NAMES_FIELD = "javascriptChannelNames";
+  private static final String JS_INJECTION_SCRIPTS_FIELD = "javascriptInjections";
   private final InputAwareWebView webView;
   private final MethodChannel methodChannel;
   private final FlutterWebViewClient flutterWebViewClient;
@@ -68,6 +69,16 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     if (params.containsKey("initialUrl")) {
       String url = (String) params.get("initialUrl");
       webView.loadUrl(url);
+    }
+    if (params.containsKey(JS_INJECTION_SCRIPTS_FIELD)) {
+      List<String> scriptList = (List<String>)params.get(JS_INJECTION_SCRIPTS_FIELD);
+      for ( String jsString : scriptList ) {
+          webView.evaluateJavascript( jsString, new android.webkit.ValueCallback<String>() {
+              @Override
+              public void onReceiveValue(String value) {
+              }
+          });
+      }
     }
   }
 

@@ -27,9 +27,16 @@ class FlutterWebViewClient {
   private final MethodChannel methodChannel;
   private boolean hasNavigationDelegate;
   private List<String> injectionScripts;
+  private boolean hasProgressTracking;
 
   FlutterWebViewClient(MethodChannel methodChannel) {
     this.methodChannel = methodChannel;
+  }
+
+  void onLoadingProgress(int progress) {
+    Map<String, Object> args = new HashMap<>();
+    args.put("progress", progress);
+    methodChannel.invokeMethod("onProgress", args);
   }
 
   public void setInjectionScripts(List<String> scripts) {

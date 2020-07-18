@@ -89,7 +89,7 @@
     if ([args[@"javascriptInjections"] isKindOfClass:[NSArray class]]) {
         NSArray* javaScriptInjections = args[@"javascriptInjections"];
         [self registerJavaScriptInjections:javaScriptInjections controller:userContentController];
-    }
+    } 
 
     NSDictionary<NSString*, id>* settings = args[@"settings"];
 
@@ -99,6 +99,15 @@
                         inConfiguration:configuration];
 
     _webView = [[FLTWKWebView alloc] initWithFrame:frame configuration:configuration];
+    
+    // if ([args[@"backgroundColor"] isKindOfClass:[NSArray class]]) {
+    //     NSArray* rgbs = args[@"backgroundColor"];
+    //      _webView.backgroundColor = [UIColor colorWithRed:(24/255.0f) green:(34/255.0f) blue:(47/255.0f) alpha:1.0f];
+    //      _webView.scrollView.backgroundColor =[UIColor colorWithRed:(24/255.0f) green:(34/255.0f) blue:(47/255.0f) alpha:1.0f];
+    // }
+
+    _webView.backgroundColor = UIColor.clearColor;// [UIColor colorWithRed:(24/255.0f) green:(34/255.0f) blue:(47/255.0f) alpha:1.0f];
+    _webView.scrollView.backgroundColor =_webView.backgroundColor;
     _navigationDelegate = [[FLTWKNavigationDelegate alloc] initWithChannel:_channel];
     _webView.UIDelegate = self;
     _webView.navigationDelegate = _navigationDelegate;

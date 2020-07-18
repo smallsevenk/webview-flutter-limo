@@ -143,6 +143,7 @@ class WebView extends StatefulWidget {
   const WebView({
     Key key,
     this.javascriptInjections,
+    this.backgroundColor,
     this.onWebViewCreated,
     this.initialUrl,
     this.javascriptMode = JavascriptMode.disabled,
@@ -286,6 +287,9 @@ class WebView extends StatefulWidget {
   /// Invoked when a page is loading.
   final PageLoadingCallback onProgress;
 
+  /// 背景色
+  final String backgroundColor;
+
   /// Controls whether WebView debugging is enabled.
   ///
   /// Setting this to true enables [WebView debugging on Android](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/).
@@ -393,6 +397,7 @@ CreationParams _creationParamsfromWidget(WebView widget) {
     userAgent: widget.userAgent,
     autoMediaPlaybackPolicy: widget.initialMediaPlaybackPolicy,
     javascriptInjections: widget.javascriptInjections ?? Set<String>(),
+    backgroundColor: widget.backgroundColor ?? '0x00000000',
   );
 }
 

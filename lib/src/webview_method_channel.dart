@@ -157,6 +157,7 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
       CreationParams creationParams) {
     return <String, dynamic>{
       'javascriptInjections': creationParams.javascriptInjections.toList(),
+      'backgroundColor': creationParams.backgroundColor.toString(),
       'initialUrl': creationParams.initialUrl,
       'settings': _webSettingsToMap(creationParams.webSettings),
       'javascriptChannelNames': creationParams.javascriptChannelNames.toList(),

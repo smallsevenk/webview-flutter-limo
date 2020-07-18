@@ -284,6 +284,7 @@ class CreationParams {
   /// The `autoMediaPlaybackPolicy` parameter must not be null.
   CreationParams({
     this.javascriptInjections,
+    this.backgroundColor,
     this.initialUrl,
     this.webSettings,
     this.javascriptChannelNames,
@@ -315,6 +316,7 @@ class CreationParams {
   // to PlatformWebView.
   final Set<String> javascriptChannelNames;
   final Set<String> javascriptInjections;
+  final String backgroundColor;
 
   /// The value used for the HTTP User-Agent: request header.
   ///

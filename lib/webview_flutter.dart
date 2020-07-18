@@ -397,7 +397,7 @@ CreationParams _creationParamsfromWidget(WebView widget) {
     userAgent: widget.userAgent,
     autoMediaPlaybackPolicy: widget.initialMediaPlaybackPolicy,
     javascriptInjections: widget.javascriptInjections ?? Set<String>(),
-    backgroundColor: widget.backgroundColor ?? '0x00000000',
+    backgroundColor: widget.backgroundColor ?? '#000000',
   );
 }
 

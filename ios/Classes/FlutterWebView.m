@@ -104,7 +104,8 @@
     
     if ([args[@"backgroundColor"] isKindOfClass:[NSString class]]) {
         NSString* color = args[@"backgroundColor"];
-        NSLog(@"打印字符串：%@",color);
+        // NSLog(@"打印字符串：%@",color);
+        NSLog(@"Clearing cache is not supported for Flutter WebViews prior to iOS 9.");
         if([color isEqualToString:@"#000000"]){
           _webView.backgroundColor = UIColor.clearColor;
         }else{

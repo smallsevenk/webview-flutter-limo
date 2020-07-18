@@ -6,7 +6,6 @@ package io.flutter.plugins.webviewflutter;
 
 import android.content.Context;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.os.Handler;
@@ -15,6 +14,9 @@ import android.webkit.WebStorage;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -30,7 +32,7 @@ import java.util.Map;
 public class FlutterWebView implements PlatformView, MethodCallHandler {
   private static final String JS_CHANNEL_NAMES_FIELD = "javascriptChannelNames";
   private static final String JS_INJECTION_SCRIPTS_FIELD = "javascriptInjections";
-  private static final String BACKGROUNDCOLOR = "backgroundColor";
+  private static final String BACKGROUNDER = "backgroundColor";
   private final InputAwareWebView webView;
   private final MethodChannel methodChannel;
   private final FlutterWebViewClient flutterWebViewClient;
@@ -55,11 +57,12 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     platformThreadHandler = new Handler(context.getMainLooper());
     
     // 设置背景色
-    if (params.containsKey(BACKGROUNDCOLOR)) {
-      System.out.println("-----111-");
-      System.out.println(params.get(BACKGROUNDCOLOR));
+    if (params.containsKey(BACKGROUNDER)) {
+      System.out.println("-----1-");
+      System.out.println(params.get(BACKGROUNDER));
       // String color = (String) params.get(BACKGROUNDCOLOR);
-      webView.setBackgroundColor(Color.parseColor("#FFDC143C"));
+
+      webView.setBackgroundColor(Color.parseColor("#0FDC143C"));
     }
 
     // Allow local storage.

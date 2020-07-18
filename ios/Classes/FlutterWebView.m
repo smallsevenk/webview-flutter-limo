@@ -108,7 +108,7 @@
         if([color isEqualToString:@"#000000"]){
           _webView.backgroundColor = UIColor.clearColor;
         }else{
-          _webView.backgroundColor = colorWithHex(color);
+          _webView.backgroundColor = [self colorWithHex:color];
         }   
     }
 
@@ -468,7 +468,7 @@
  *
  *  @return UIColor
  */
-+(UIColor *) colorWithHex: (NSString *) stringToConvert
+- (UIColor *) colorWithHex: (NSString *) stringToConvert
 {
     NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     // String should be 6 or 8 characters

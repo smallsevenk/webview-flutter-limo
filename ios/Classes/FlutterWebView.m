@@ -102,7 +102,7 @@
 
     _webView = [[FLTWKWebView alloc] initWithFrame:frame configuration:configuration];
     
-    if ([args[@"backgroundColor"] isKindOfClass:[NSString] class]) {
+    if ([args[@"backgroundColor"] isKindOfClass:[NSString class]]) {
         NSString* color = args[@"backgroundColor"];
         NSLog(@"打印字符串：%@",color);
         if([color isEqualToString:@"#000000"]){

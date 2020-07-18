@@ -58,7 +58,9 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     
     // 设置背景色
     if (params.containsKey(BACKGROUNDER)) {
+      
       String color = (String) params.get(BACKGROUNDCOLOR);
+      System.out.print(color);
       webView.setBackgroundColor(Color.parseColor(color));
     }
 

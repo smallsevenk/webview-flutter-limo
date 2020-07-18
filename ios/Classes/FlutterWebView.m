@@ -104,7 +104,7 @@
     
     if ([args[@"backgroundColor"] isKindOfClass:[NSString] class]) {
         NSString* color = args[@"backgroundColor"];
-        NSLog(color);
+        NSLog(@"打印字符串：%@",color);
         if([color isEqualToString:@"#000000"]){
           _webView.backgroundColor = UIColor.clearColor;
         }else{

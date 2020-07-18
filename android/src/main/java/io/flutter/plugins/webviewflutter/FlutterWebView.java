@@ -13,10 +13,8 @@ import android.view.View;
 import android.webkit.WebStorage;
 import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-//import android.graphics.Canvas;
-import android.graphics.Color;
-//import android.graphics.Paint;
+import android.webkit.WebView; 
+import android.graphics.Color; 
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -60,7 +58,7 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     if (params.containsKey(BACKGROUNDER)) {
       
       String color = (String) params.get(BACKGROUNDER);
-      
+
       if(color.equals("#000000")){
         webView.setBackgroundColor(0x00000000);
       }

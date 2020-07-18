@@ -105,7 +105,7 @@
     if ([args[@"backgroundColor"] isKindOfClass:[NSString] class]) {
         NSString* color = args[@"backgroundColor"];
         NSLog(color);
-        if([color isEqualToString:color]){
+        if([color isEqualToString:@"#000000"]){
           _webView.backgroundColor = UIColor.clearColor;
         }else{
           _webView.backgroundColor = RGBHex(0xDC143C);

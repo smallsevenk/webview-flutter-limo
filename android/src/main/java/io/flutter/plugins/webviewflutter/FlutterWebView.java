@@ -60,8 +60,13 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     if (params.containsKey(BACKGROUNDER)) {
       
       String color = (String) params.get(BACKGROUNDER);
-      System.out.print(color);
-      webView.setBackgroundColor(Color.parseColor(color));
+      
+      if(color.equals("#000000")){
+        webView.setBackgroundColor(0x00000000);
+      }
+      else{
+        webView.setBackgroundColor(Color.parseColor(color));
+      }
     }
 
     // Allow local storage.

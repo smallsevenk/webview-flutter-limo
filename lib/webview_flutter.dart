@@ -287,7 +287,7 @@ class WebView extends StatefulWidget {
   /// Invoked when a page is loading.
   final PageLoadingCallback onProgress;
 
-  /// 背景色
+  /// 背景色 例:#000000
   final String backgroundColor;
 
   /// Controls whether WebView debugging is enabled.

@@ -7,6 +7,8 @@
 #import "FLTWKProgressionDelegate.h"
 #import "JavaScriptChannelHandler.h"
 
+#define RGBHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define RGBHexAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
 @implementation FLTWebViewFactory {
   NSObject<FlutterBinaryMessenger>* _messenger;
 }
@@ -100,13 +102,17 @@
 
     _webView = [[FLTWKWebView alloc] initWithFrame:frame configuration:configuration];
     
-    // if ([args[@"backgroundColor"] isKindOfClass:[NSArray class]]) {
-    //     NSArray* rgbs = args[@"backgroundColor"];
-    //      _webView.backgroundColor = [UIColor colorWithRed:(24/255.0f) green:(34/255.0f) blue:(47/255.0f) alpha:1.0f];
-    //      _webView.scrollView.backgroundColor =[UIColor colorWithRed:(24/255.0f) green:(34/255.0f) blue:(47/255.0f) alpha:1.0f];
-    // }
+    if ([args[@"backgroundColor"] isKindOfClass:[NSString] class]) {
+        NSString* color = args[@"backgroundColor"];
+        NSLog(color);
+        if([color isEqualToString:color]){
+          _webView.backgroundColor = UIColor.clearColor;
+        }else{
+          _webView.backgroundColor = RGBHex(0xDC143C);
+        }   
+    }
 
-    _webView.backgroundColor = UIColor.clearColor;// [UIColor colorWithRed:(24/255.0f) green:(34/255.0f) blue:(47/255.0f) alpha:1.0f];
+    
     _webView.scrollView.backgroundColor =_webView.backgroundColor;
     _navigationDelegate = [[FLTWKNavigationDelegate alloc] initWithChannel:_channel];
     _webView.UIDelegate = self;
